@@ -25,7 +25,7 @@ const Home = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="uppercase flex items-center gap-2"
+                    className="uppercase flex items-center gap-2 border-2 border-accent text-accent   hover:bg-accent hover:text-primary transition duration-300"
                   >
                     <span>Download CV</span>
                     <FiDownload className="text-xl" />
