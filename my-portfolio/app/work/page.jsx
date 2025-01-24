@@ -64,7 +64,13 @@ const Carousel = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex flex-col justify-center py-4">
+    <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+                opacity: 1,
+                transition: { delay: 2.2, duration: 0.3, ease: "easeIn" },
+            }}      
+            className="min-h-[80vh] flex flex-col justify-center py-4">
         {/* Dot Navigation */}
         <div className="flex justify-center gap-2 mb-5">
           {projects.map((_, index) => (
@@ -147,7 +153,7 @@ const Carousel = () => {
           </div>
         </div>
       </div>
-    </div>
+      </motion.div>
   );
 };
 
