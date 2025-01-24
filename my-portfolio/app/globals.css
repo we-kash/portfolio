@@ -22,6 +22,9 @@
   .text-outline-hover {
     -webkit-text-stroke: 1px #00ff99;
   }
+  /* *{
+    border: #00ff99 solid 1px;
+  } */
 }
 
 

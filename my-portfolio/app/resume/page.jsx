@@ -1,78 +1,227 @@
-import { FiDownload } from "react-icons/fi";
+"use client";
+
+import {
+    FaHtml5,
+    FaCss3,
+    FaJs,
+    FaReact,
+    FaNodeJs,
+} from "react-icons/fa";
+
+import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
+
+// about data
+const about = {
+    title: "About Me",
+    description: "Passionate software engineer with expertise in Java and web development, actively contributing to impactful projects.",
+    info: [
+        {
+            fieldName: "Name",
+            fieldValue: "Vikash Saxena",
+        },
+        {
+            fieldName: "Experience",
+            fieldValue: "1+ Years",
+        },
+        {
+            fieldName: "Email",
+            fieldValue: "vikash211004@gmail.com",
+        },
+        {
+            fieldName: "Freelance",
+            fieldValue: "Available",
+        },
+        {
+            fieldName: "Languages",
+            fieldValue: "English, Hindi",
+        },
+        {
+            fieldName: "Nationality",
+            fieldValue: "Indian",
+        },
+    ],
+};
+
+// experience data
+const experience = {
+    icon: "/assets/resume/badge.svg",
+    title: "My Experience",
+    description: "Highlights of my professional journey so far.",
+    items: [
+        {
+            company: "Accenture",
+            position: "Software Engineer",
+            duration: "Aug 2024 - Present",
+        },
+        {
+            company: "Astarix Agency",
+            position: "Augmented Reality Intern",
+            duration: "Jun 2023 - Jan 2024",
+        },
+    ],
+};
+
+// education data
+const education = {
+    icon: "/assets/resume/cap.svg",
+    title: "My Education",
+    description: "Academic qualifications that shaped my skills.",
+    items: [
+        {
+            institution: "Jaypee University of Engineering and Technology",
+            degree: "BTech"+" CGPA: 8.5/10.0",
+            duration: "July 2020 - June 2024",
+        },
+        {
+            institution: "Army Public School, Allahabad",
+            degree: "Class XII: 81.2%, Class X: 91.2%",
+            duration: "Completed in 2020",
+        },
+    ],
+};
+
+// skills data
+const skills = {
+    title: "My Skills",
+    description: "A snapshot of my technical expertise.",
+    skillList: [
+        {
+            icons: <FaHtml5 />,
+            name: "HTML 5",
+        },
+        {
+            icons: <FaCss3 />,
+            name: "CSS 3",
+        },
+        {
+            icons: <FaJs />,
+            name: "JavaScript",
+        },
+        {
+            icons: <FaReact />,
+            name: "React.js",
+        },
+        {
+            icons: <SiNextdotjs />,
+            name: "Next.js",
+        },
+        {
+            icons: <SiTailwindcss />,
+            name: "Tailwind CSS",
+        },
+        {
+            icons: <FaNodeJs />,
+            name: "Node.js",
+        },
+    ],
+};
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { motion } from "framer-motion";
 
 const Resume = () => {
-  return (
-    <section className="h-full">
-      <div className="container mx-auto h-full">
-        <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
-          {/* Text Section */}
-          <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl text-accent">Resume</span>
-            <h1 className="h1 mb-6">
-              Here's <span className="text-accent">My Journey</span>
-            </h1>
-            <p className="max-w-[500px] mb-9 text-white/90 text-justify">
-              Below is a snapshot of my experience, projects, skills, and education. Download my resume for detailed insights!
-            </p>
-            {/* Download Button */}
-            <div className="flex flex-col xl:flex-row items-center gap-8">
-              <a
-                href="/path/to/Vikash_Saxena_Resume.pdf"
-                download
-                className="uppercase flex items-center gap-2 border border-accent text-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-primary transition-all duration-500"
-              >
-                <span>Download CV</span>
-                <FiDownload className="text-xl" />
-              </a>
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+                opacity: 1,
+                transition: { delay: 0.4, duration: 0.4, ease: "easeIn" },
+            }}
+            className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
+        >
+            <div className="container mx-auto">
+                <Tabs
+                    defaultValue="experience"
+                    className="flex flex-col xl:flex-row gap-[60px]"
+                >
+                    <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
+                        <TabsTrigger value="experience">Experience</TabsTrigger>
+                        <TabsTrigger value="education">Education</TabsTrigger>
+                        <TabsTrigger value="skills">Skills</TabsTrigger>
+                        <TabsTrigger value="about">About Me</TabsTrigger>
+                    </TabsList>
+
+                    {/* Content Section */}
+                    <div className="min-h-[80vh] w-full">
+                        {/* Experience */}
+                        <TabsContent value="experience" className="w-full">
+                            <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                                <h3 className="text-4xl font-bold">{experience.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{experience.description}</p>
+                                <ScrollArea className="h-[400px]">
+                                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                                        {experience.items.map((item, index) => (
+                                            <li key={index} className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1">
+                                                <span className="text-accent">{item.duration}</span>
+                                                <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
+                                                    {item.position}
+                                                </h3>
+                                                <p className="text-white/60">{item.company}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </ScrollArea>
+                            </div>
+                        </TabsContent>
+
+                        {/* Education */}
+                        <TabsContent value="education" className="w-full">
+                            <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                                <h3 className="text-4xl font-bold">{education.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{education.description}</p>
+                                <ScrollArea className="h-[400px]">
+                                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                                        {education.items.map((item, index) => (
+                                            <li key={index} className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1">
+                                                <span className="text-accent">{item.duration}</span>
+                                                <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
+                                                    {item.degree}
+                                                </h3>
+                                                <p className="text-white/60">{item.institution}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </ScrollArea>
+                            </div>
+                        </TabsContent>
+
+                        {/* Skills */}
+                        <TabsContent value="skills" className="w-full ">
+                            <div className="flex flex-col gap-[30px]">
+                                <h3 className="text-4xl font-bold">{skills.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{skills.description}</p>
+                                <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
+                                    {skills.skillList.map((skill, index) => (
+                                        <li key={index} className="bg-[#232329] h-[150px] rounded-xl flex justify-center items-center">
+                                            <div className="text-6xl text-accent">{skill.icons}</div>
+                                            <p className="mt-2 text-white/80 capitalize">{skill.name}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </TabsContent>
+
+                        {/* About */}
+                        <TabsContent value="about" className="w-full text-center xl:text-left">
+                            <div className="flex flex-col gap-[30px]">
+                                <h3 className="text-4xl font-bold">{about.title}</h3>
+                                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{about.description}</p>
+                                <ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[680px] mx-auto xl:mx-0">
+                                    {about.info.map((item, index) => (
+                                        <li key={index} className="flex items-center justify-center xl:justify-start gap-4">
+                                            <span className="text-white/60">{item.fieldName}</span>
+                                            <span className="text-xl text-white/80">{item.fieldValue}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </TabsContent>
+                    </div>
+                </Tabs>
             </div>
-          </div>
-          {/* Resume Details */}
-          <div className="order-1 xl:order-none mb-8 xl:mb-0 w-full">
-            <div className="bg-gray-800 p-6 rounded-lg text-white/80">
-              {/* Experience */}
-              <h2 className="text-2xl font-bold mb-4 text-accent">Experience</h2>
-              <ul className="mb-6 list-disc ml-6">
-                <li>
-                  <h3 className="font-semibold underline">Software Engineer, Accenture  (August 2024 - Present)</h3>
-                  <p>Developed RESTful APIs with Spring Boot, trained in Java tools, and collaborated on enterprise projects.</p>
-                </li>
-                <li>
-                  <h3 className="font-semibold underline">Augmented Reality Intern, Astarix Agency (June 2023 - Jan 2024)</h3>
-                  <p>Built immersive AR solutions, enhancing user experience by 30%, and worked on 3 team projects.</p>
-                </li>
-              </ul>
-              <br />
-              {/* Projects */}
-              <h2 className="text-2xl font-bold mb-4 text-accent">Projects</h2>
-              <ul className="mb-6 list-disc ml-6">
-                <li>
-                  <span className="font-semibold underline">Food Ordering Website<br/></span> Created a seamless platform with React.js, Node.js, and MongoDB.
-                </li>
-                <li>
-                  <span className="font-semibold underline">AR GO (Indoor Navigation)<br/></span> Developed cost-effective navigation using AR Core and Unity.
-                </li>
-              </ul>
-              <br />
-              {/* Skills */}
-              <h2 className="text-2xl font-bold mb-4 text-accent">Skills</h2>
-              <p>C++ | Java | Spring | React.js | Node.js | Unity Engine | MySQL | Git</p>
-              <br />
-              {/* Education */}
-              <h2 className="text-2xl font-bold mb-4 text-accent">Education</h2>
-              <ul className="list-disc ml-6">
-                <li>
-                  <span className="font-semibold">Jaypee University of Engineering and Technology:</span> CGPA: 8.5 (2020 - 2024)
-                </li>
-                <li>
-                  <span className="font-semibold">Army Public School, Allahabad:</span> Class XII: 81.2%, Class X: 91.2%
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </motion.div>
+    );
 };
 
 export default Resume;
