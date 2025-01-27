@@ -71,8 +71,18 @@ const Carousel = () => {
                 transition: { delay: 2.2, duration: 0.3, ease: "easeIn" },
             }}      
             className="min-h-[80vh] flex flex-col justify-center py-4">
-        {/* Dot Navigation */}
-        <div className="flex justify-center gap-2 mb-5">
+        
+       
+      </motion.div>
+  );
+};
+
+export default Carousel;
+
+/**
+ * 
+//    Dot Navigation 
+     <div className="flex justify-center gap-2 mb-5">
           {projects.map((_, index) => (
             <button
               key={index}
@@ -85,15 +95,15 @@ const Carousel = () => {
         </div>
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row lg:gap-[30px]">
-          {/* Left Panel (Vertical Transition) */}
+          //  Left Panel (Vertical Transition) 
           <div className="w-full lg:w-[50%] h-[80vh] overflow-hidden relative">
             {projects.map((project, index) => (
               <motion.div
-                key={project.id}
+                key={index}
                 className={`absolute inset-0 flex flex-col  items-left bg-[#1d1d20] text-white`}
                 initial="initial"
-                animate={activeIndex === index ? "animate" : ""}
-                exit="exit"
+                animate={activeIndex === index ? "animate" : null} // Use null to avoid redundant animations
+                exit={activeIndex === index ? "exit" : null} // Explicit control for exit animation
                 variants={verticalVariants}
                 transition={{ duration: 0.8 }}
               >
@@ -127,15 +137,16 @@ const Carousel = () => {
             ))}
           </div>
 
-          {/* Right Panel (Horizontal Transition) */}
+          //  Right Panel (Horizontal Transition) 
+
           <div className="w-full lg:w-[50%] h-[70vh] overflow-hidden relative">
             {projects.map((project, index) => (
               <motion.div
-                key={project.id}
+                key={index}
                 className="absolute inset-0 flex justify-center items-center bg-[#2a2a2f]"
                 initial="initial"
-                animate={activeIndex === index ? "animate" : ""}
-                exit="exit"
+                animate={activeIndex === index ? "animate" : null} // Use null to avoid redundant animations
+                exit={activeIndex === index ? "exit" : null} // Explicit control for exit animation
                 variants={horizontalVariants}
                 transition={{ duration: 0.8 }}
               >
@@ -153,8 +164,4 @@ const Carousel = () => {
           </div>
         </div>
       </div>
-      </motion.div>
-  );
-};
-
-export default Carousel;
+*/
