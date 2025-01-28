@@ -43,12 +43,14 @@ const projects = [
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  // const [images,setImages] = useState([]);
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % projects.length);
     }, 4000); // Change slide every 4 seconds
+
     return () => clearInterval(interval);
+
   }, []);
 
   const verticalVariants = {
@@ -65,24 +67,19 @@ const Carousel = () => {
 
   return (
     <motion.div
-            initial={{ opacity: 0 }}
-            animate={{
-                opacity: 1,
-                transition: { delay: 2.2, duration: 0.3, ease: "easeIn" },
-            }}      
-            className="min-h-[80vh] flex flex-col justify-center py-4">
-        
-       
-      </motion.div>
-  );
-};
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 2.2, duration: 0.3, ease: "easeIn" },
+      }}
+      className="min-h-[80vh] flex flex-col justify-center py-4">
 
-export default Carousel;
+      {/* Start of stair animation */}
 
-/**
- * 
-//    Dot Navigation 
-     <div className="flex justify-center gap-2 mb-5">
+      <div className="container mx-auto">
+      <div className="flex flex-col lg:flex-row lg:gap-[30px] justify-center items-center ">
+       {/* Dot Navigation  */}
+     <div className="flex justify-center gap-2 m-2 ">
           {projects.map((_, index) => (
             <button
               key={index}
@@ -93,10 +90,13 @@ export default Carousel;
             ></button>
           ))}
         </div>
+        </div>
+        </div>
+
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row lg:gap-[30px]">
-          //  Left Panel (Vertical Transition) 
-          <div className="w-full lg:w-[50%] h-[80vh] overflow-hidden relative">
+      <div className="flex flex-col lg:flex-row lg:gap-[30px]">    
+          {/* //  Left Panel (Vertical Transition)  */}
+          <div className="w-full lg:w-[45%] h-[70vh] overflow-hidden relative">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
@@ -137,7 +137,7 @@ export default Carousel;
             ))}
           </div>
 
-          //  Right Panel (Horizontal Transition) 
+          {/* //  Right Panel (Horizontal Transition)  */}
 
           <div className="w-full lg:w-[50%] h-[70vh] overflow-hidden relative">
             {projects.map((project, index) => (
@@ -164,4 +164,10 @@ export default Carousel;
           </div>
         </div>
       </div>
-*/
+
+      {/* End of stair animation */}
+      </motion.div >
+  );
+};
+
+export default Carousel;
